@@ -3,7 +3,7 @@ langchain challenge
 
 Chatbot to simulate AWS queries via moto. Change the input in the messages variable to change response.
 
-#Environment
+## Environment
 You will need an .env file with the following
 
 GOOGLE_API_KEY=''
@@ -13,6 +13,6 @@ AWS_SECURITY_TOKEN=''
 AWS_SESSION_TOKEN=''
 AWS_DEFAULT_REGION=''
 
-#Execute
+## Execute
 
 python3.10 app.py
