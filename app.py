@@ -1,7 +1,6 @@
 from langchain.agents import create_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.tools import tool
-from langgraph.prebuilt import create_react_agent
 import aws
 
 GoogleModel = ChatGoogleGenerativeAI(
@@ -47,10 +46,10 @@ agent = create_agent(
     tools=[get_public_s3, get_data_in_s3, get_IAM_permissions,get_EC2_Info],
     system_prompt="You are an expert AWS assistant",
 )
-
+#define tools
 tools = [get_public_s3, get_data_in_s3, get_IAM_permissions, get_EC2_Info]
 agent = create_agent(GoogleModel, tools)
-
+#define message to leverage all tools 
 inputs = {"messages": [("user", "How many buckets are publicly exposed? What are the files in the 'TestBucket1'. What are the permissions of 'testuser' and what is the size of the EC2 at 10.0.1.3")]}
 
 for chunk in agent.stream(inputs, stream_mode="values"):
@@ -58,16 +57,3 @@ for chunk in agent.stream(inputs, stream_mode="values"):
         final_message = chunk["messages"][-1]
 
 print(final_message.content)
-'''
-The project involves building a natural language chatbot that is capable of 
-answering questions about an AWS account. You should be using the LangChain 
-framework (https://python.langchain.com/docs/introduction/) and, more specifically, 
-adding various AWS APIs in the form of custom 
-Tools (https://python.langchain.com/docs/modules/agents/tools/custom_tools). 
-
-Here are a few sample questions the chatbot should be able to answer:
-
-
-When you return the problem, please include the code, a readme, 
-    requirements.txt, and some sample output in a zip file.
-'''
