@@ -2,6 +2,11 @@ from langchain.agents import create_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.tools import tool
 import aws
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 GoogleModel = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
